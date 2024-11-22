@@ -1,0 +1,25 @@
+[
+    {
+        "src_ip": "192.168.1.1",
+        "dst_ip": "192.168.1.2",
+        "protocol": "TCP",
+        "src_port": 80,
+        "dst_port": 8080,
+        "action": "allow"
+    },
+    {
+        "src_ip": "10.0.0.5",
+        "dst_ip": "10.0.0.10",
+        "protocol": "UDP",
+        "src_port": 53,
+        "dst_port": 53,
+        "action": "allow"
+    },
+    {
+        "src_ip": "0.0.0.0/0",
+        "dst_ip": "192.168.1.100",
+        "protocol": "TCP",
+        "dst_port": 22,
+        "action": "drop"
+    }
+]

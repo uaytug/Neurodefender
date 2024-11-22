@@ -1,0 +1,7 @@
+scapy
+netfilterqueue
+requests
+joblib
+numpy
+Flask
+pytest
