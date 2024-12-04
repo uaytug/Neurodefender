@@ -1,0 +1,90 @@
+/* ToDo: Add CODEOWNERS file to the repository root directory. 
+
+# Neurodefender XDR Platform CODEOWNERS
+#
+# This file defines code ownership and review requirements.
+# Order is important; the last matching pattern takes precedence.
+
+# Default owners for everything in the repo
+* @security-lead @tech-lead
+
+# Core Security Components
+/security-core/ @security-lead @core-security-team
+/security-core/crypto/ @crypto-lead @security-lead
+/security-core/auth/ @auth-lead @security-lead
+/security-core/secure_channel/ @network-lead @security-lead
+
+# NGFW Core
+/ngfw-core/ @ngfw-lead @network-security-team
+/ngfw-core/packet_processor/ @network-lead @performance-team
+/ngfw-core/protocol_handlers/ @protocol-lead @security-team
+/ngfw-core/threat_detection/ @ml-lead @threat-team
+/ngfw-core/accelerator/ @performance-lead @gpu-team
+
+# SIEM Processor
+/siem-processor/ @siem-lead @events-team
+/siem-processor/collectors/ @data-lead @events-team
+/siem-processor/enrichment/ @intel-lead @threat-team
+/siem-processor/correlator/ @analytics-lead @ml-team
+/siem-processor/storage/ @storage-lead @performance-team
+
+# Phishing Protection
+/phishing-protection/ @phishing-lead @email-security-team
+/phishing-protection/email_analysis/ @ml-lead @content-team
+/phishing-protection/url_analysis/ @web-lead @security-team
+/phishing-protection/ml_models/ @ml-lead @research-team
+
+# Machine Learning Platform
+/ml-platform/ @ml-lead @research-team
+/ml-platform/models/ @model-lead @ml-team
+/ml-platform/training_pipeline/ @training-lead @ml-team
+/ml-platform/feature_store/ @data-lead @ml-team
+
+# Infrastructure and DevOps
+*.dockerfile @devops-lead @security-lead
+/docker/ @devops-lead @security-lead
+/kubernetes/ @k8s-lead @devops-lead
+/terraform/ @infra-lead @security-lead
+
+# Documentation
+/docs/ @docs-lead @tech-writers
+/docs/architecture/ @arch-lead @security-lead
+/docs/api/ @api-lead @docs-lead
+/docs/security/ @security-lead @compliance-lead
+
+# Build and Test Infrastructure
+/tests/ @qa-lead @test-automation-team
+/ci/ @devops-lead @security-lead
+*.sh @devops-lead @security-lead
+Makefile @devops-lead @build-team
+
+# Configuration and Security Policies
+/config/ @security-lead @compliance-lead
+*.yaml @config-lead @security-lead
+*.json @config-lead @security-lead
+
+# Dependencies and Package Management
+go.mod @go-lead @security-lead
+go.sum @go-lead @security-lead
+Cargo.toml @rust-lead @security-lead
+Cargo.lock @rust-lead @security-lead
+pyproject.toml @python-lead @security-lead
+poetry.lock @python-lead @security-lead
+
+# Legal and Compliance
+/legal/ @legal-team @compliance-lead
+LICENSE @legal-team
+SECURITY.md @security-lead @legal-team
+CODE_OF_CONDUCT.md @community-lead @legal-team
+
+# Runtime Security Components
+/runtime-security/ @runtime-lead @security-team
+/zero-trust/ @zerotrust-lead @security-team
+/blockchain/ @blockchain-lead @security-team
+
+# Performance Critical Paths
+**/*_performance.rs @performance-lead @security-lead
+**/*_critical.go @performance-lead @security-lead
+**/*_optimized.py @performance-lead @security-lead
+
+*/
