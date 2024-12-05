@@ -1,9 +1,122 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
+# Dependabot configuration file
+# Location: .github/dependabot.yml
 
 version: 2
 updates:
-- package-ecosystem: "" # See documentation for possible values
-  directory: "/" # Location of package manifests
-  schedule:
-    interval: "weekly"
+  # Rust package management
+  - package-ecosystem: "cargo"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    target-branch: "develop"
+    labels:
+      - "rust"
+      - "dependencies"
+    commit-message:
+      prefix: "cargo"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "security-team"
+    
+  # Additional Rust packages in specific components
+  - package-ecosystem: "cargo"
+    directory: "/security-core"
+    schedule:
+      interval: "daily"
+    labels:
+      - "rust"
+      - "security-core"
+      - "dependencies"
+      
+  - package-ecosystem: "cargo"
+    directory: "/ngfw-core"
+    schedule:
+      interval: "daily"
+    labels:
+      - "rust"
+      - "ngfw"
+      - "dependencies"
+
+  # Python package management
+  - package-ecosystem: "pip"
+    directory: "/phishing-protection"
+    schedule:
+      interval: "daily"
+    labels:
+      - "python"
+      - "dependencies"
+    commit-message:
+      prefix: "pip"
+    ignore:
+      # Ignore major updates for ML libraries to maintain stability
+      - dependency-name: "tensorflow"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "torch"
+        update-types: ["version-update:semver-major"]
+        
+  - package-ecosystem: "pip"
+    directory: "/ml-platform"
+    schedule:
+      interval: "daily"
+    labels:
+      - "python"
+      - "ml"
+      - "dependencies"
+
+  # Go package management
+  - package-ecosystem: "gomod"
+    directory: "/siem-processor"
+    schedule:
+      interval: "daily"
+    labels:
+      - "go"
+      - "siem"
+      - "dependencies"
+    commit-message:
+      prefix: "go"
+
+  - package-ecosystem: "gomod"
+    directory: "/security-mesh"
+    schedule:
+      interval: "daily"
+    labels:
+      - "go"
+      - "mesh"
+      - "dependencies"
+
+  # Docker image updates
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "docker"
+      - "dependencies"
+    commit-message:
+      prefix: "docker"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "ci-cd"
+      - "dependencies"
+    commit-message:
+      prefix: "github-actions"
+
+  # NPM packages for any UI components
+  - package-ecosystem: "npm"
+    directory: "/ui"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "npm"
+      - "frontend"
+      - "dependencies"
+    groups:
+      react:
+        patterns:
+          - "react*"
+          - "@types/react*"
