@@ -1,0 +1,288 @@
+syntax = "proto3";
+
+package neurodefender.analysis;
+
+option go_package = "neurodefender/proto/analysis";
+option java_package = "com.neurodefender.proto.analysis";
+option java_multiple_files = true;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/empty.proto";
+
+// Analysis Service provides unified analysis capabilities across SIEM, NGFW, and
+// Phishing Protection components
+service AnalysisService {
+    // Real-time traffic analysis for NGFW
+    rpc AnalyzeTraffic(TrafficAnalysisRequest) returns (TrafficAnalysisResponse);
+    
+    // Streaming version of traffic analysis
+    rpc AnalyzeTrafficStream(stream TrafficAnalysisRequest) returns (stream TrafficAnalysisResponse);
+    
+    // Email analysis for phishing detection
+    rpc AnalyzeEmail(EmailAnalysisRequest) returns (EmailAnalysisResponse);
+    
+    // URL analysis for phishing and malicious content detection
+    rpc AnalyzeURL(URLAnalysisRequest) returns (URLAnalysisResponse);
+    
+    // Log analysis for SIEM correlation
+    rpc AnalyzeLogs(LogAnalysisRequest) returns (LogAnalysisResponse);
+    
+    // Streaming log analysis
+    rpc AnalyzeLogStream(stream LogEntry) returns (stream AnalysisResult);
+    
+    // Get analysis status
+    rpc GetAnalysisStatus(AnalysisStatusRequest) returns (AnalysisStatusResponse);
+    
+    // Get analysis results
+    rpc GetAnalysisResults(AnalysisResultRequest) returns (AnalysisResultResponse);
+}
+
+// Traffic analysis messages
+message TrafficAnalysisRequest {
+    string session_id = 1;
+    NetworkFlow flow = 2;
+    bytes payload = 3;
+    map<string, string> metadata = 4;
+    AnalysisOptions options = 5;
+}
+
+message TrafficAnalysisResponse {
+    string analysis_id = 1;
+    ThreatVerdict verdict = 2;
+    repeated DetectedThreat threats = 3;
+    map<string, double> risk_scores = 4;
+    google.protobuf.Timestamp timestamp = 5;
+}
+
+message NetworkFlow {
+    Endpoint source = 1;
+    Endpoint destination = 2;
+    string protocol = 3;
+    google.protobuf.Timestamp start_time = 4;
+    google.protobuf.Duration duration = 5;
+    uint64 bytes_sent = 6;
+    uint64 bytes_received = 7;
+    repeated string tags = 8;
+}
+
+message Endpoint {
+    string ip = 1;
+    uint32 port = 2;
+    string domain = 3;
+    string asn = 4;
+    string country = 5;
+    map<string, string> labels = 6;
+}
+
+// Email analysis messages
+message EmailAnalysisRequest {
+    string message_id = 1;
+    EmailMetadata metadata = 2;
+    string content = 3;
+    repeated Attachment attachments = 4;
+    repeated URL urls = 5;
+    AnalysisOptions options = 6;
+}
+
+message EmailAnalysisResponse {
+    string analysis_id = 1;
+    PhishingVerdict verdict = 2;
+    repeated DetectedThreat threats = 3;
+    repeated AnalyzedAttachment analyzed_attachments = 4;
+    repeated AnalyzedURL analyzed_urls = 5;
+    google.protobuf.Timestamp timestamp = 6;
+}
+
+message EmailMetadata {
+    string from = 1;
+    repeated string to = 2;
+    repeated string cc = 3;
+    string subject = 4;
+    google.protobuf.Timestamp date = 5;
+    map<string, string> headers = 6;
+}
+
+message Attachment {
+    string filename = 1;
+    string content_type = 2;
+    bytes content = 3;
+    string sha256 = 4;
+}
+
+// URL analysis messages
+message URLAnalysisRequest {
+    string url = 1;
+    URLContext context = 2;
+    AnalysisOptions options = 3;
+}
+
+message URLAnalysisResponse {
+    string analysis_id = 1;
+    URLVerdict verdict = 2;
+    repeated DetectedThreat threats = 3;
+    ScreenshotData screenshot = 4;
+    map<string, string> metadata = 5;
+    google.protobuf.Timestamp timestamp = 6;
+}
+
+message URL {
+    string original = 1;
+    string normalized = 2;
+    string domain = 3;
+    string path = 4;
+    map<string, string> query_params = 5;
+}
+
+message URLContext {
+    string referrer = 1;
+    string source_type = 2;
+    map<string, string> metadata = 3;
+}
+
+// Log analysis messages
+message LogAnalysisRequest {
+    repeated LogEntry logs = 1;
+    AnalysisContext context = 2;
+    AnalysisOptions options = 3;
+}
+
+message LogAnalysisResponse {
+    string analysis_id = 1;
+    repeated AnalysisResult results = 2;
+    map<string, double> risk_scores = 3;
+    google.protobuf.Timestamp timestamp = 4;
+}
+
+message LogEntry {
+    string source = 1;
+    string facility = 2;
+    string severity = 3;
+    string message = 4;
+    google.protobuf.Timestamp timestamp = 5;
+    map<string, string> fields = 6;
+}
+
+// Common types
+message AnalysisOptions {
+    bool deep_analysis = 1;
+    google.protobuf.Duration timeout = 2;
+    map<string, string> parameters = 3;
+}
+
+message AnalysisContext {
+    string tenant_id = 1;
+    string environment = 2;
+    map<string, string> attributes = 3;
+}
+
+message DetectedThreat {
+    string type = 1;
+    string name = 2;
+    string category = 3;
+    double confidence = 4;
+    Severity severity = 5;
+    map<string, string> attributes = 6;
+    google.protobuf.Timestamp detection_time = 7;
+}
+
+message AnalysisResult {
+    string result_id = 1;
+    string rule_id = 2;
+    string category = 3;
+    Severity severity = 4;
+    string description = 5;
+    repeated string tags = 6;
+    map<string, string> metadata = 7;
+    google.protobuf.Timestamp timestamp = 8;
+}
+
+message AnalyzedAttachment {
+    string filename = 1;
+    ThreatVerdict verdict = 2;
+    repeated DetectedThreat threats = 3;
+    map<string, string> metadata = 4;
+}
+
+message AnalyzedURL {
+    string url = 1;
+    URLVerdict verdict = 2;
+    repeated DetectedThreat threats = 3;
+    map<string, string> metadata = 4;
+}
+
+message ScreenshotData {
+    bytes image = 1;
+    string format = 2;
+    uint32 width = 3;
+    uint32 height = 4;
+}
+
+// Status and result retrieval messages
+message AnalysisStatusRequest {
+    string analysis_id = 1;
+}
+
+message AnalysisStatusResponse {
+    string analysis_id = 1;
+    AnalysisStatus status = 2;
+    uint32 progress = 3;
+    string message = 4;
+    google.protobuf.Timestamp last_update = 5;
+}
+
+message AnalysisResultRequest {
+    string analysis_id = 1;
+    bool include_details = 2;
+}
+
+message AnalysisResultResponse {
+    string analysis_id = 1;
+    oneof result {
+        TrafficAnalysisResponse traffic_result = 2;
+        EmailAnalysisResponse email_result = 3;
+        URLAnalysisResponse url_result = 4;
+        LogAnalysisResponse log_result = 5;
+    }
+}
+
+// Enums
+enum Severity {
+    SEVERITY_UNKNOWN = 0;
+    SEVERITY_INFO = 1;
+    SEVERITY_LOW = 2;
+    SEVERITY_MEDIUM = 3;
+    SEVERITY_HIGH = 4;
+    SEVERITY_CRITICAL = 5;
+}
+
+enum ThreatVerdict {
+    THREAT_UNKNOWN = 0;
+    THREAT_CLEAN = 1;
+    THREAT_SUSPICIOUS = 2;
+    THREAT_MALICIOUS = 3;
+}
+
+enum PhishingVerdict {
+    PHISHING_UNKNOWN = 0;
+    PHISHING_CLEAN = 1;
+    PHISHING_SUSPICIOUS = 2;
+    PHISHING_MALICIOUS = 3;
+}
+
+enum URLVerdict {
+    URL_UNKNOWN = 0;
+    URL_CLEAN = 1;
+    URL_SUSPICIOUS = 2;
+    URL_MALICIOUS = 3;
+    URL_BLOCKED = 4;
+}
+
+enum AnalysisStatus {
+    STATUS_UNKNOWN = 0;
+    STATUS_QUEUED = 1;
+    STATUS_IN_PROGRESS = 2;
+    STATUS_COMPLETED = 3;
+    STATUS_FAILED = 4;
+    STATUS_TIMEOUT = 5;
+}

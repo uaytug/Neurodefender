@@ -1,0 +1,304 @@
+# Authentication and Authorization Queries
+type Query {
+  """
+  Get information about the current API token
+  """
+  tokenInfo: TokenInfo!
+
+  """
+  Get current user permissions and roles
+  """
+  currentUser: User!
+
+  """
+  List all API tokens for the current user
+  """
+  apiTokens(input: TokenFilterInput): TokenConnection!
+
+  """
+  Search security events with filtering and pagination
+  """
+  searchEvents(input: EventSearchInput!): EventConnection!
+
+  """
+  Get alert rules with filtering options
+  """
+  alertRules(input: AlertRuleFilterInput!): AlertRuleConnection!
+
+  """
+  Get details of a specific alert rule
+  """
+  alertRule(id: ID!): AlertRule
+
+  """
+  Get firewall policies with filtering options
+  """
+  firewallPolicies(input: PolicyQueryInput!): PolicyConnection!
+
+  """
+  Get details of a specific firewall policy
+  """
+  firewallPolicy(id: ID!): FirewallPolicy
+
+  """
+  Get ML model information and status
+  """
+  mlModel(id: ID!): MLModel!
+
+  """
+  List all ML models with filtering
+  """
+  mlModels(input: MLModelFilterInput!): MLModelConnection!
+
+  """
+  Get URL analysis results
+  """
+  urlAnalysis(input: URLQueryInput!): URLAnalysisResult!
+
+  """
+  Get email analysis status and results
+  """
+  emailAnalysis(input: EmailQueryInput!): EmailAnalysisResult!
+
+  """
+  Get system health status
+  """
+  systemHealth: SystemHealth!
+
+  """
+  Get performance metrics
+  """
+  performanceMetrics(input: MetricsQueryInput!): MetricsResult!
+}
+
+# Input Types
+input TokenFilterInput {
+  status: TokenStatus
+  createdAfter: DateTime
+  createdBefore: DateTime
+  permissions: [Permission!]
+  limit: Int = 50
+  offset: Int = 0
+}
+
+input EventSearchInput {
+  timeRange: TimeRangeInput!
+  filters: EventFilterInput
+  pagination: PaginationInput
+  sorting: [SortInput!]
+}
+
+input AlertRuleFilterInput {
+  status: RuleStatus
+  category: AlertCategory
+  severity: [Severity!]
+  limit: Int = 50
+  offset: Int = 0
+}
+
+input PolicyQueryInput {
+  status: PolicyStatus
+  type: PolicyType
+  includeStatistics: Boolean = false
+  limit: Int = 50
+  offset: Int = 0
+}
+
+input MLModelFilterInput {
+  type: ModelType
+  status: ModelStatus
+  version: String
+  limit: Int = 50
+  offset: Int = 0
+}
+
+input URLQueryInput {
+  url: String!
+  includeHistory: Boolean = false
+  detailed: Boolean = false
+}
+
+input EmailQueryInput {
+  messageId: ID!
+  includeAttachments: Boolean = true
+  includeDomainReputation: Boolean = true
+}
+
+input MetricsQueryInput {
+  metrics: [String!]!
+  timeRange: TimeRangeInput!
+  interval: String = "5m"
+  aggregation: AggregationType = AVERAGE
+}
+
+# Common Input Types
+input TimeRangeInput {
+  start: DateTime!
+  end: DateTime!
+}
+
+input PaginationInput {
+  first: Int
+  after: String
+  limit: Int
+  offset: Int
+}
+
+input SortInput {
+  field: String!
+  direction: SortDirection!
+}
+
+input EventFilterInput {
+  severity: [Severity!]
+  sourceType: [String!]
+  category: [String!]
+  tags: [String!]
+  search: String
+}
+
+# Response Types
+type TokenInfo {
+  isValid: Boolean!
+  expiresAt: DateTime!
+  permissions: [Permission!]!
+  metadata: TokenMetadata!
+}
+
+type TokenMetadata {
+  createdAt: DateTime!
+  lastUsed: DateTime
+  createdBy: String!
+}
+
+type TokenConnection {
+  edges: [TokenEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type EventConnection {
+  edges: [EventEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type AlertRuleConnection {
+  edges: [AlertRuleEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type PolicyConnection {
+  edges: [PolicyEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type MLModelConnection {
+  edges: [MLModelEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type URLAnalysisResult {
+  results: [URLAnalysis!]!
+  metadata: AnalysisMetadata!
+}
+
+type EmailAnalysisResult {
+  messageId: ID!
+  status: AnalysisStatus!
+  scanResults: EmailScanResults
+  metadata: AnalysisMetadata!
+}
+
+type SystemHealth {
+  components: [ComponentHealth!]!
+  alerts: [SystemAlert!]!
+  lastUpdated: DateTime!
+}
+
+type MetricsResult {
+  timeRange: TimeRange!
+  metrics: [Metric!]!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+# Enums
+enum TokenStatus {
+  ACTIVE
+  EXPIRED
+  REVOKED
+}
+
+enum Permission {
+  READ_EVENTS
+  WRITE_EVENTS
+  MANAGE_RULES
+  MANAGE_POLICIES
+  ADMIN
+}
+
+enum Severity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum RuleStatus {
+  ENABLED
+  DISABLED
+  PENDING
+}
+
+enum PolicyStatus {
+  ACTIVE
+  INACTIVE
+  DRAFT
+}
+
+enum ModelStatus {
+  TRAINING
+  DEPLOYED
+  FAILED
+  ARCHIVED
+}
+
+enum AnalysisStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+}
+
+enum SortDirection {
+  ASC
+  DESC
+}
+
+enum AggregationType {
+  AVERAGE
+  SUM
+  MAX
+  MIN
+  COUNT
+}
+
+# Scalars
+"""
+RFC3339 formatted date-time string
+"""
+scalar DateTime
+
+"""
+JSON object for flexible metadata storage
+"""
+scalar JSONObject
