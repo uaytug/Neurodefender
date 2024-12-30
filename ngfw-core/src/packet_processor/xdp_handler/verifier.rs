@@ -23,10 +23,10 @@ impl XdpVerifier {
             max_map_entries: 100_000,
             max_instructions: 1_000_000,
             allowed_helpers: vec![
-                1, // bpf_map_lookup_elem
-                2, // bpf_map_update_elem
-                3, // bpf_map_delete_elem
-                5, // bpf_tail_call
+                1,  // bpf_map_lookup_elem
+                2,  // bpf_map_update_elem
+                3,  // bpf_map_delete_elem
+                5,  // bpf_tail_call
                 10, // bpf_get_prandom_u32
             ],
             stack_size_limit: 512,
@@ -178,17 +178,28 @@ impl XdpVerifier {
 
     fn get_helper_function_id(&self, instruction: &[u8]) -> Option<u32> {
         // Extract helper function ID from instruction
-        None
+        // This is a placeholder implementation
+        if instruction.len() > 0 {
+            Some(instruction[0] as u32)
+        } else {
+            None
+        }
     }
 
     fn is_stack_operation(&self, instruction: &[u8]) -> bool {
         // Determine if instruction operates on stack
-        false
+        // This is a placeholder implementation
+        instruction.len() > 0 && instruction[0] == 0x18
     }
 
     fn calculate_stack_impact(&self, instruction: &[u8]) -> u32 {
         // Calculate how instruction affects stack usage
-        0
+        // This is a placeholder implementation
+        if instruction.len() > 1 {
+            instruction[1] as u32
+        } else {
+            0
+        }
     }
 }
 
