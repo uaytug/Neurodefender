@@ -1,0 +1,11 @@
+{
+  "id": "1000001",
+  "name": "ICMP Echo Request",
+  "description": "Detects ICMP echo request packets",
+  "message": "Potential ping sweep detected",
+  "severity": "low",
+  "protocol": "icmp",
+  "direction": "inbound",
+  "category": "recon",
+  "enabled": true
+}

@@ -1,0 +1,11 @@
+{
+  "id": "1000020",
+  "name": "ICMP Data Exfiltration",
+  "description": "Detects unusually large ICMP packets that may contain exfiltrated data",
+  "message": "Potential data exfiltration via ICMP detected",
+  "severity": "high",
+  "protocol": "icmp",
+  "direction": "outbound",
+  "category": "data-exfiltration",
+  "enabled": true
+}

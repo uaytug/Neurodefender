@@ -1,0 +1,12 @@
+{
+  "id": "1000046",
+  "name": "Container Escape",
+  "description": "Detects attempts to escape from containerized environments",
+  "message": "Container escape attempt detected",
+  "severity": "critical",
+  "protocol": "tcp",
+  "direction": "outbound",
+  "payload_pattern": "(?i)(/proc/self/cgroup|/sys/fs/cgroup|docker\\.sock|kubernetes)",
+  "category": "container-security",
+  "enabled": true
+}

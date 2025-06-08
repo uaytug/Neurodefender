@@ -1,0 +1,12 @@
+{
+  "id": "1000002",
+  "name": "SSH Brute Force",
+  "description": "Detects potential SSH brute force attacks",
+  "message": "Potential SSH brute force attack detected",
+  "severity": "medium",
+  "destination_port": "22",
+  "protocol": "ssh",
+  "direction": "inbound",
+  "category": "bruteforce",
+  "enabled": true
+}

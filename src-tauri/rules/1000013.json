@@ -1,0 +1,12 @@
+{
+  "id": "1000013",
+  "name": "Telnet Access Attempt",
+  "description": "Detects Telnet usage which is insecure",
+  "message": "Insecure Telnet connection attempt detected",
+  "severity": "high",
+  "destination_port": "23",
+  "protocol": "tcp",
+  "direction": "any",
+  "category": "policy-violation",
+  "enabled": true
+}

@@ -1,0 +1,12 @@
+{
+  "id": "1000043",
+  "name": "DGA Detection",
+  "description": "Detects suspicious DNS queries that may be DGA-generated",
+  "message": "Domain Generation Algorithm activity detected",
+  "severity": "high",
+  "protocol": "dns",
+  "direction": "outbound",
+  "payload_pattern": "[a-z]{20,}\\.(?:com|net|org|info|biz)",
+  "category": "malware",
+  "enabled": true
+}

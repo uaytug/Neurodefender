@@ -1,0 +1,12 @@
+{
+  "id": "1000059",
+  "name": "Hardware Implant",
+  "description": "Detects potential hardware implant C2 communication",
+  "message": "Hardware implant communication detected",
+  "severity": "critical",
+  "destination_port": "31337",
+  "protocol": "tcp",
+  "direction": "outbound",
+  "category": "hardware-attack",
+  "enabled": true
+}

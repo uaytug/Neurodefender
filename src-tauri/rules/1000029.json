@@ -1,0 +1,12 @@
+{
+  "id": "1000029",
+  "name": "Mimikatz Tool",
+  "description": "Detects Mimikatz tool usage for credential theft",
+  "message": "Mimikatz credential theft tool detected",
+  "severity": "critical",
+  "protocol": "tcp",
+  "direction": "any",
+  "payload_pattern": "(?i)(mimikatz|sekurlsa|lsadump|gentilkiwi)",
+  "category": "credential-theft",
+  "enabled": true
+}

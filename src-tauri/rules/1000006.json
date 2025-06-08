@@ -1,0 +1,15 @@
+{
+  "id": "1000006",
+  "name": "SQL Injection Attack",
+  "description": "Detects common SQL injection patterns in HTTP requests",
+  "message": "SQL injection attempt detected",
+  "severity": "critical",
+  "protocol": "http",
+  "direction": "inbound",
+  "payload_pattern": "(?i)(union.*select|select.*from|insert.*into|delete.*from|drop.*table|update.*set|exec.*\\(|execute.*\\(|';.*--|--.*\\n)",
+  "category": "web-attack",
+  "enabled": true,
+  "references": [
+    "https://owasp.org/www-community/attacks/SQL_Injection"
+  ]
+}

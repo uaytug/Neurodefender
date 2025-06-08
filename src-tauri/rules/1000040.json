@@ -1,0 +1,12 @@
+{
+  "id": "1000040",
+  "name": "APT Indicator",
+  "description": "Detects indicators of APT tools and frameworks",
+  "message": "Advanced Persistent Threat activity detected",
+  "severity": "critical",
+  "protocol": "tcp",
+  "direction": "outbound",
+  "payload_pattern": "(?i)(cobaltstrike|empire|metasploit|covenant)",
+  "category": "apt",
+  "enabled": true
+}

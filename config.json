@@ -1,0 +1,19 @@
+{
+  "server_host": "127.0.0.1",
+  "server_port": 55035,
+  "mongodb_uri": "mongodb://localhost:27017",
+  "fallback_mongodb_uri": "mongodb+srv://neurodefenderTest:N3ur0d3f3nd3r@neurodefender.j1ouomk.mongodb.net/?retryWrites=true&w=majority&appName=neurodefender",
+  "no_connection_db_log": "db_connection_fallback.log",
+  "database_name": "neurodefender",
+  "network_interface": "en0",
+  "jwt_secret": "neurodefender_secret_key_change_in_production",
+  "jwt_expiration": 86400,
+  "rules_path": "rules",
+  "detection_sensitivity": "medium",
+  "log_level": "info",
+  "log_file": "neurodefender.log",
+  "data_retention_days": 30,
+  "prevention_enabled": false,
+  "prevention_use_native_firewall": true,
+  "prevention_auto_block_duration": 60
+} 

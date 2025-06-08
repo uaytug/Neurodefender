@@ -1,0 +1,11 @@
+{
+  "id": "1000032",
+  "name": "ARP Spoofing",
+  "description": "Detects ARP spoofing/poisoning attempts",
+  "message": "ARP spoofing attack detected",
+  "severity": "high",
+  "protocol": "arp",
+  "direction": "any",
+  "category": "mitm",
+  "enabled": true
+}

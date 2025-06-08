@@ -1,0 +1,12 @@
+{
+  "id": "1000033",
+  "name": "SMTP Open Relay",
+  "description": "Detects attempts to test for SMTP open relay",
+  "message": "SMTP open relay test detected",
+  "severity": "medium",
+  "destination_port": "25",
+  "protocol": "smtp",
+  "payload_pattern": "(?i)(rcpt to:|mail from:|vrfy|expn)",
+  "category": "recon",
+  "enabled": true
+}

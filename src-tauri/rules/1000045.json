@@ -1,0 +1,12 @@
+{
+  "id": "1000045",
+  "name": "Cobalt Strike Beacon",
+  "description": "Detects Cobalt Strike command and control beacons",
+  "message": "Cobalt Strike C2 beacon detected",
+  "severity": "critical",
+  "destination_port": "443",
+  "protocol": "https",
+  "payload_pattern": "(?i)(pipe|beacon|stager|cobaltstrike)",
+  "category": "apt",
+  "enabled": true
+}

@@ -1,0 +1,12 @@
+{
+  "id": "1000012",
+  "name": "FTP Brute Force",
+  "description": "Detects FTP brute force attempts",
+  "message": "FTP brute force attack detected",
+  "severity": "medium",
+  "destination_port": "21",
+  "protocol": "ftp",
+  "direction": "inbound",
+  "category": "bruteforce",
+  "enabled": true
+}

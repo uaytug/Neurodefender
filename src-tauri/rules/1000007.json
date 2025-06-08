@@ -1,0 +1,12 @@
+{
+  "id": "1000007",
+  "name": "Cross-Site Scripting (XSS)",
+  "description": "Detects potential XSS attack patterns",
+  "message": "XSS attack attempt detected",
+  "severity": "high",
+  "protocol": "http",
+  "direction": "inbound",
+  "payload_pattern": "(?i)(<script[^>]*>.*?</script>|javascript:|onerror=|onload=|onclick=|<iframe|<embed|<object)",
+  "category": "web-attack",
+  "enabled": true
+}

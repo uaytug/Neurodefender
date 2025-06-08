@@ -1,0 +1,12 @@
+{
+  "id": "1000024",
+  "name": "XXE Attack",
+  "description": "Detects XML External Entity (XXE) attack attempts",
+  "message": "XML External Entity attack detected",
+  "severity": "high",
+  "protocol": "http",
+  "direction": "inbound",
+  "payload_pattern": "<!ENTITY.*SYSTEM|<!DOCTYPE.*\\[<!ENTITY",
+  "category": "web-attack",
+  "enabled": true
+}

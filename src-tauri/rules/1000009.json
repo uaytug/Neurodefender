@@ -1,0 +1,12 @@
+{
+  "id": "1000009",
+  "name": "SYN Flood Attack",
+  "description": "Detects excessive SYN packets indicating possible DDoS",
+  "message": "Potential SYN flood DDoS attack detected",
+  "severity": "critical",
+  "protocol": "tcp",
+  "direction": "inbound",
+  "category": "dos",
+  "tcp_flags": "S",
+  "enabled": true
+}

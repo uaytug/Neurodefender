@@ -1,0 +1,12 @@
+{
+  "id": "1000049",
+  "name": "LOLBins Usage",
+  "description": "Detects misuse of legitimate Windows utilities",
+  "message": "Living off the Land binaries usage detected",
+  "severity": "high",
+  "protocol": "tcp",
+  "direction": "any",
+  "payload_pattern": "(?i)(certutil|bitsadmin|mshta|rundll32|regsvr32|wmic|cscript|wscript).*(-urlcache|-transfer|javascript:|vbscript:)",
+  "category": "lolbins",
+  "enabled": true
+}

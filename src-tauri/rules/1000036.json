@@ -1,0 +1,12 @@
+{
+  "id": "1000036",
+  "name": "Remote Access Trojan",
+  "description": "Detects potential Remote Access Trojan communication",
+  "message": "Remote Access Trojan activity detected",
+  "severity": "critical",
+  "destination_port": "5552:5555",
+  "protocol": "tcp",
+  "direction": "outbound",
+  "category": "malware",
+  "enabled": true
+}

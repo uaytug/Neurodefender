@@ -1,0 +1,11 @@
+{
+  "id": "1000055",
+  "name": "Zero Trust Violation",
+  "description": "Detects violations of Zero Trust network policies",
+  "message": "Zero Trust policy violation detected",
+  "severity": "high",
+  "protocol": "tcp",
+  "direction": "any",
+  "category": "policy-violation",
+  "enabled": true
+}

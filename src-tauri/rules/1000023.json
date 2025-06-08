@@ -1,0 +1,12 @@
+{
+  "id": "1000023",
+  "name": "LDAP Injection",
+  "description": "Detects LDAP injection attempts",
+  "message": "LDAP injection attempt detected",
+  "severity": "high",
+  "destination_port": "389",
+  "protocol": "tcp",
+  "payload_pattern": "[)(|&=*]|\\)|\\(|\\|",
+  "category": "injection-attack",
+  "enabled": true
+}

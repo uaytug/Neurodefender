@@ -1,0 +1,12 @@
+{
+  "id": "1000038",
+  "name": "Malicious File Upload",
+  "description": "Detects uploads of potentially malicious file types",
+  "message": "Potentially malicious file upload detected",
+  "severity": "high",
+  "protocol": "http",
+  "direction": "inbound",
+  "payload_pattern": "(?i)(\\.php|\\.jsp|\\.asp|\\.exe|\\.bat|\\.ps1|\\.sh).*multipart/form-data",
+  "category": "web-attack",
+  "enabled": true
+}

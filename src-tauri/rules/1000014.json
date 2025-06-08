@@ -1,0 +1,12 @@
+{
+  "id": "1000014",
+  "name": "SMB/NetBIOS Scan",
+  "description": "Detects SMB/NetBIOS scanning activity",
+  "message": "SMB/NetBIOS scanning detected",
+  "severity": "medium",
+  "destination_port": "135:139",
+  "protocol": "tcp",
+  "direction": "inbound",
+  "category": "recon",
+  "enabled": true
+}

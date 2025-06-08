@@ -1,0 +1,12 @@
+{
+  "id": "1000051",
+  "name": "Smart Contract Attack",
+  "description": "Detects potential smart contract vulnerabilities exploitation",
+  "message": "Blockchain smart contract attack detected",
+  "severity": "critical",
+  "destination_port": "8545",
+  "protocol": "tcp",
+  "payload_pattern": "(?i)(selfdestruct|delegatecall|reentrancy|overflow)",
+  "category": "blockchain-attack",
+  "enabled": true
+}

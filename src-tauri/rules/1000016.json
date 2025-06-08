@@ -1,0 +1,12 @@
+{
+  "id": "1000016",
+  "name": "Cryptocurrency Mining",
+  "description": "Detects connections to common cryptocurrency mining pools",
+  "message": "Unauthorized cryptocurrency mining detected",
+  "severity": "high",
+  "destination_port": "3333:3335",
+  "protocol": "tcp",
+  "direction": "outbound",
+  "category": "malware",
+  "enabled": true
+}

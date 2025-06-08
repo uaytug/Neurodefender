@@ -1,0 +1,12 @@
+{
+  "id": "1000018",
+  "name": "Tor Network Traffic",
+  "description": "Detects potential Tor network traffic",
+  "message": "Tor network usage detected",
+  "severity": "medium",
+  "destination_port": "9001:9051",
+  "protocol": "tcp",
+  "direction": "outbound",
+  "category": "anonymizer",
+  "enabled": true
+}

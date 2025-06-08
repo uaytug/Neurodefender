@@ -1,0 +1,12 @@
+{
+  "id": "1000039",
+  "name": "Crypto Wallet Attack",
+  "description": "Detects potential cryptocurrency wallet attacks",
+  "message": "Cryptocurrency wallet attack detected",
+  "severity": "critical",
+  "destination_port": "8332:8333",
+  "protocol": "tcp",
+  "direction": "outbound",
+  "category": "financial-attack",
+  "enabled": true
+}

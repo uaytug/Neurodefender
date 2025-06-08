@@ -1,0 +1,11 @@
+{
+  "id": "1000035",
+  "name": "DNS Cache Poisoning",
+  "description": "Detects potential DNS cache poisoning attempts",
+  "message": "DNS cache poisoning attempt detected",
+  "severity": "high",
+  "protocol": "dns",
+  "direction": "inbound",
+  "category": "dns-attack",
+  "enabled": true
+}

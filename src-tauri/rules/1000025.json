@@ -1,0 +1,15 @@
+{
+  "id": "1000025",
+  "name": "Heartbleed Exploit",
+  "description": "Detects Heartbleed SSL vulnerability exploitation",
+  "message": "Heartbleed vulnerability exploit attempt detected",
+  "severity": "critical",
+  "destination_port": "443",
+  "protocol": "https",
+  "payload_pattern": "\\x18\\x03[\\x00-\\x03][\\x00-\\x03]\\x40",
+  "category": "exploit",
+  "enabled": true,
+  "references": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2014-0160"
+  ]
+}

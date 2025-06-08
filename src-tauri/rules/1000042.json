@@ -1,0 +1,12 @@
+{
+  "id": "1000042",
+  "name": "Lateral Movement",
+  "description": "Detects potential lateral movement using SMB",
+  "message": "Lateral movement in network detected",
+  "severity": "critical",
+  "destination_port": "445",
+  "protocol": "tcp",
+  "direction": "internal",
+  "category": "lateral-movement",
+  "enabled": true
+}

@@ -1,0 +1,12 @@
+{
+  "id": "1000003",
+  "name": "TCP Port Scan",
+  "description": "Detects TCP SYN packets that may indicate port scanning",
+  "message": "Potential port scanning activity detected",
+  "severity": "medium",
+  "protocol": "tcp",
+  "direction": "inbound",
+  "category": "recon",
+  "tcp_flags": "S",
+  "enabled": true
+}

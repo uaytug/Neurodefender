@@ -1,0 +1,11 @@
+{
+  "id": "1000005",
+  "name": "DNS Tunneling",
+  "description": "Detects potentially suspicious DNS queries that may indicate tunneling",
+  "message": "Potential DNS tunneling detected",
+  "severity": "high",
+  "protocol": "dns",
+  "direction": "outbound",
+  "category": "data-exfiltration",
+  "enabled": true
+}

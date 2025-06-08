@@ -1,0 +1,985 @@
+/* Dashboard CSS - Matching the App.css Theme */
+
+/* Dashboard Overview Title */
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-text-color);
+  margin: 0 0 2rem 0;
+  background: linear-gradient(135deg, var(--accent-color), var(--tertiary-accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+
+/* Error Message */
+.error-message {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--status-high);
+  border: 1px solid var(--status-high);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.3);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* Status Indicator */
+.status-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.status-indicator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+}
+
+.status-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--secondary-text-color);
+}
+
+.status-protected {
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--status-low);
+  border: 1px solid var(--status-low);
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
+}
+
+.dashboard-activity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Dashboard Widget Base */
+.dashboard-widget {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.dashboard-widget::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+}
+
+.dashboard-widget:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  border-color: var(--accent-color);
+}
+
+/* Widget Header */
+.widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.widget-header h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary-text-color);
+  margin: 0;
+}
+
+.widget-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.control-button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-color);
+  background: var(--glass-bg);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.control-button svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--secondary-text-color);
+  transition: all 0.3s ease;
+}
+
+.control-button:hover {
+  background: var(--hover-bg);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.control-button:hover svg {
+  stroke: var(--accent-color);
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+}
+
+.tooltip-text {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--secondary-bg);
+  color: var(--primary-text-color);
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 10;
+  margin-top: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.tooltip:hover .tooltip-text {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+  color: var(--secondary-text-color);
+  font-size: 0.9rem;
+  position: relative;
+}
+
+.loading-spinner::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -70%);
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--border-color);
+  border-top: 2px solid var(--accent-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -70%) rotate(0deg); }
+  100% { transform: translate(-50%, -70%) rotate(360deg); }
+}
+
+/* Recent Alerts Widget */
+.recent-alerts {
+  grid-column: 1 / -1;
+}
+
+.alert-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid var(--border-color);
+}
+
+.alert-list li {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.alert-list li:last-child {
+  border-bottom: none;
+}
+
+.alert-list li:hover {
+  background: var(--hover-bg);
+}
+
+.alert-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent-color);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.alert-list li:hover::before {
+  opacity: 1;
+}
+
+.alert-timestamp {
+  font-size: 0.85rem;
+  color: var(--tertiary-text-color);
+  min-width: 140px;
+  font-weight: 500;
+}
+
+.alert-severity {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.alert-description {
+  flex: 1;
+  color: var(--secondary-text-color);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Alert Severity Styles */
+.severity-high .alert-severity {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--status-high);
+  border: 1px solid var(--status-high);
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.2);
+}
+
+.severity-medium .alert-severity {
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--status-medium);
+  border: 1px solid var(--status-medium);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.2);
+}
+
+.severity-low .alert-severity {
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--status-low);
+  border: 1px solid var(--status-low);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.2);
+}
+
+.severity-info .alert-severity {
+  background: rgba(139, 92, 246, 0.2);
+  color: var(--status-info);
+  border: 1px solid var(--status-info);
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.2);
+}
+
+/* Widget Link */
+.widget-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(4px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  justify-content: center;
+}
+
+.widget-link:hover {
+  background: var(--hover-bg);
+  color: var(--primary-text-color);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 12px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+.widget-link-arrow {
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.widget-link-arrow svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+}
+
+.widget-link:hover .widget-link-arrow {
+  transform: translateX(4px);
+}
+
+/* Network Traffic Widget */
+.traffic-overview {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.traffic-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.traffic-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.traffic-item:hover {
+  background: var(--hover-bg);
+  border-color: var(--accent-color);
+}
+
+.traffic-label {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.9rem;
+  color: var(--secondary-text-color);
+  font-weight: 500;
+}
+
+.traffic-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.traffic-indicator.inbound {
+  background: var(--status-low);
+  box-shadow: 0 0 8px var(--status-low);
+}
+
+.traffic-indicator.outbound {
+  background: var(--accent-color);
+  box-shadow: 0 0 8px var(--accent-color);
+}
+
+.traffic-indicator.blocked {
+  background: var(--status-high);
+  box-shadow: 0 0 8px var(--status-high);
+}
+
+.traffic-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-text-color);
+}
+
+/* Traffic Chart */
+.traffic-chart {
+  position: relative;
+  height: 150px;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: auto;
+}
+
+.chart-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 0;
+  z-index: 1;
+}
+
+.chart-line {
+  height: 1px;
+  background: var(--border-color);
+  opacity: 0.5;
+}
+
+.chart-bars {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  padding: 1rem;
+  z-index: 2;
+}
+
+.chart-bar-container {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.chart-bar {
+  width: 100%;
+  background: linear-gradient(180deg, var(--accent-color), var(--secondary-accent-color));
+  border-radius: 2px 2px 0 0;
+  min-height: 4px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px var(--accent-glow);
+  cursor: pointer;
+}
+
+.chart-bar:hover {
+  filter: brightness(1.2);
+  transform: scaleX(1.2);
+}
+
+.chart-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent, rgba(15, 23, 42, 0.1));
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Threat Map Widget */
+.threat-map {
+  grid-column: 1 / -1;
+}
+
+.map-container {
+  position: relative;
+  height: 350px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid var(--border-color);
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+}
+
+/* Threats Blocked Widget */
+.threats-blocked-widget {
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+}
+
+.widget-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.threats-summary {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.stat-value {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-color), var(--tertiary-accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 20px var(--accent-glow);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--secondary-text-color);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.threats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  flex: 1;
+}
+
+.threat-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(239, 68, 68, 0.05);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.threat-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--status-high);
+  opacity: 0.8;
+}
+
+.threat-item:hover {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.3);
+  transform: translateX(4px);
+}
+
+.threat-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.threat-indicator.high {
+  background: var(--status-high);
+  box-shadow: 0 0 8px var(--status-high);
+}
+
+.threat-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.threat-time {
+  font-size: 0.8rem;
+  color: var(--secondary-text-color);
+  font-weight: 500;
+}
+
+.threat-description {
+  font-size: 0.9rem;
+  color: var(--primary-text-color);
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.no-threats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.no-threats-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 50%;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.no-threats-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--status-low);
+}
+
+.no-threats-text {
+  font-size: 0.9rem;
+  color: var(--secondary-text-color);
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .dashboard-grid {
+    gap: 1.5rem;
+  }
+  
+  .dashboard-widget {
+    padding: 1.5rem;
+  }
+  
+  .traffic-chart {
+    height: 120px;
+  }
+  
+  .map-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 992px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .status-indicator {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .recent-alerts {
+    grid-column: 1;
+  }
+  
+  .threat-map {
+    grid-column: 1;
+  }
+  
+  .stat-value {
+    font-size: 2.5rem;
+  }
+
+  .threat-item {
+    padding: 0.8rem;
+    gap: 0.8rem;
+  }
+
+  .threat-description {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .status-indicator {
+    padding: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .dashboard-widget {
+    padding: 1.2rem;
+  }
+  
+  .widget-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .widget-controls {
+    align-self: flex-end;
+  }
+  
+  .alert-list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+  
+  .alert-timestamp {
+    min-width: auto;
+    order: 3;
+  }
+  
+  .alert-severity {
+    min-width: auto;
+    order: 1;
+    align-self: flex-start;
+  }
+  
+  .alert-description {
+    order: 2;
+  }
+  
+  .traffic-chart {
+    height: 100px;
+  }
+  
+  .map-container {
+    height: 250px;
+  }
+  
+  .stat-value {
+    font-size: 2rem;
+  }
+
+  .threat-item {
+    padding: 0.8rem;
+    gap: 0.6rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .threat-details {
+    width: 100%;
+  }
+
+  .threat-description {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .threats-summary {
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+  
+  .status-indicator {
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .dashboard-widget {
+    padding: 1rem;
+  }
+  
+  .widget-header h2 {
+    font-size: 1.1rem;
+  }
+  
+  .control-button {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .control-button svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .traffic-metrics {
+    gap: 0.8rem;
+  }
+  
+  .traffic-item {
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .traffic-label {
+    font-size: 0.8rem;
+  }
+  
+  .traffic-value {
+    font-size: 1rem;
+  }
+  
+  .traffic-chart {
+    height: 80px;
+  }
+  
+  .chart-bars {
+    padding: 0.5rem;
+  }
+  
+  .map-container {
+    height: 200px;
+  }
+  
+  .stat-value {
+    font-size: 1.8rem;
+  }
+  
+  .loading-spinner::before {
+    width: 20px;
+    height: 20px;
+  }
+
+  .threat-item {
+    padding: 0.6rem;
+    gap: 0.5rem;
+  }
+
+  .threat-time {
+    font-size: 0.7rem;
+  }
+
+  .threat-description {
+    font-size: 0.8rem;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+  }
+
+  .no-threats {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .no-threats-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .no-threats-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Animation Delays for Dashboard Widgets */
+.dashboard-widget:nth-child(1) { animation-delay: 0.1s; }
+.dashboard-widget:nth-child(2) { animation-delay: 0.2s; }
+.dashboard-widget:nth-child(3) { animation-delay: 0.3s; }
+.dashboard-widget:nth-child(4) { animation-delay: 0.4s; }
+
+/* Accessibility Improvements */
+.dashboard-widget:focus-within {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.control-button:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.widget-link:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+  .dashboard-widget,
+  .status-indicator {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+  
+  .widget-controls,
+  .control-button {
+    display: none;
+  }
+  
+  .traffic-chart,
+  .map-container {
+    border: 1px solid #ccc;
+    background: white;
+  }
+}
+
+.threat-description {
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

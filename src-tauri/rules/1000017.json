@@ -1,0 +1,15 @@
+{
+  "id": "1000017",
+  "name": "Log4j Exploit Attempt",
+  "description": "Detects Log4j vulnerability exploitation attempts",
+  "message": "Log4Shell vulnerability exploit attempt detected",
+  "severity": "critical",
+  "protocol": "http",
+  "direction": "inbound",
+  "payload_pattern": "\\$\\{jndi:(ldap|rmi|dns|nis|iiop|corba|nds|http)://",
+  "category": "exploit",
+  "enabled": true,
+  "references": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2021-44228"
+  ]
+}

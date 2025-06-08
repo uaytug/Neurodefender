@@ -1,0 +1,12 @@
+{
+  "id": "1000054",
+  "name": "Deepfake Generation",
+  "description": "Detects traffic patterns associated with deepfake generation",
+  "message": "Deepfake generation traffic detected",
+  "severity": "high",
+  "protocol": "https",
+  "direction": "outbound",
+  "payload_pattern": "(?i)(deepfake|gan|generative|face.*swap|voice.*clone)",
+  "category": "ai-misuse",
+  "enabled": true
+}

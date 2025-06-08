@@ -1,0 +1,12 @@
+{
+  "id": "1000047",
+  "name": "WebAssembly Cryptojacking",
+  "description": "Detects WebAssembly-based cryptocurrency mining",
+  "message": "WebAssembly-based cryptojacking detected",
+  "severity": "high",
+  "protocol": "http",
+  "direction": "outbound",
+  "payload_pattern": "(?i)(\\.wasm|webassembly|instantiate|coinhive|cryptonight)",
+  "category": "cryptojacking",
+  "enabled": true
+}

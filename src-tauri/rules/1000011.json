@@ -1,0 +1,12 @@
+{
+  "id": "1000011",
+  "name": "RDP Brute Force",
+  "description": "Detects potential RDP brute force attempts",
+  "message": "RDP brute force attack detected",
+  "severity": "high",
+  "destination_port": "3389",
+  "protocol": "tcp",
+  "direction": "inbound",
+  "category": "bruteforce",
+  "enabled": true
+}

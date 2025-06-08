@@ -1,0 +1,15 @@
+{
+  "id": "1000026",
+  "name": "Shellshock Exploit",
+  "description": "Detects Shellshock bash vulnerability exploitation",
+  "message": "Shellshock vulnerability exploit detected",
+  "severity": "critical",
+  "protocol": "http",
+  "direction": "inbound",
+  "payload_pattern": "\\(\\s*\\)\\s*\\{[^}]*:[^}]*;[^}]*\\}",
+  "category": "exploit",
+  "enabled": true,
+  "references": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2014-6271"
+  ]
+}

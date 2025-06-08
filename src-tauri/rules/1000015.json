@@ -1,0 +1,16 @@
+{
+  "id": "1000015",
+  "name": "WannaCry Ransomware",
+  "description": "Detects potential WannaCry ransomware activity",
+  "message": "WannaCry ransomware activity detected",
+  "severity": "critical",
+  "destination_port": "445",
+  "protocol": "tcp",
+  "direction": "any",
+  "payload_pattern": "(?i)(wannacry|wncry|wcry|wanacrypt)",
+  "category": "malware",
+  "enabled": true,
+  "references": [
+    "https://www.cisa.gov/news-events/alerts/2017/05/12/indicators-associated-wannacry-ransomware"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "1000041",
+  "name": "Ransomware Encryption",
+  "description": "Detects patterns associated with ransomware file encryption",
+  "message": "Ransomware file encryption activity detected",
+  "severity": "critical",
+  "protocol": "tcp",
+  "direction": "any",
+  "payload_pattern": "(?i)(\\.encrypted|\\.locked|\\.crypto|ransom|bitcoin|monero|decrypt|payment)",
+  "category": "ransomware",
+  "enabled": true
+}

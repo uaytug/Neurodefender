@@ -1,0 +1,12 @@
+{
+  "id": "1000008",
+  "name": "Command Injection",
+  "description": "Detects command injection attempts",
+  "message": "Command injection attempt detected",
+  "severity": "critical",
+  "protocol": "http",
+  "direction": "inbound",
+  "payload_pattern": "(?i)(\\||;|`|\\$\\(|&&|\\|\\||>|<).*?(cat|ls|pwd|whoami|id|uname|ps|netstat|ifconfig|wget|curl|chmod|chown)",
+  "category": "web-attack",
+  "enabled": true
+}

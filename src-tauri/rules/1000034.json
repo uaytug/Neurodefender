@@ -1,0 +1,12 @@
+{
+  "id": "1000034",
+  "name": "VPN Traffic",
+  "description": "Detects VPN traffic (may be legitimate or policy violation)",
+  "message": "VPN traffic detected",
+  "severity": "low",
+  "destination_port": "500",
+  "protocol": "udp",
+  "direction": "any",
+  "category": "policy-violation",
+  "enabled": true
+}

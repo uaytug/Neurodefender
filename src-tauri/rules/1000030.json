@@ -1,0 +1,12 @@
+{
+  "id": "1000030",
+  "name": "Zero-Day Pattern",
+  "description": "Detects unusual packet patterns that may indicate zero-day exploits",
+  "message": "Potential zero-day exploit pattern detected",
+  "severity": "critical",
+  "protocol": "tcp",
+  "direction": "inbound",
+  "category": "anomaly",
+  "tcp_flags": "PSH+ACK",
+  "enabled": true
+}

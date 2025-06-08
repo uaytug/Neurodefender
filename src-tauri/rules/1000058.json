@@ -1,0 +1,12 @@
+{
+  "id": "1000058",
+  "name": "BIOS/UEFI Attack",
+  "description": "Detects potential BIOS/UEFI level attacks",
+  "message": "BIOS/UEFI level attack detected",
+  "severity": "critical",
+  "protocol": "tcp",
+  "direction": "any",
+  "payload_pattern": "(?i)(uefi|bios|bootkit|rootkit|spi.*flash)",
+  "category": "firmware-attack",
+  "enabled": true
+}

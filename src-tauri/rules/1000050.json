@@ -1,0 +1,12 @@
+{
+  "id": "1000050",
+  "name": "AI Model Theft",
+  "description": "Detects potential AI/ML model exfiltration",
+  "message": "AI/ML model exfiltration detected",
+  "severity": "critical",
+  "protocol": "https",
+  "direction": "outbound",
+  "payload_pattern": "(?i)(\\.h5|\\.pb|\\.pth|\\.onnx|\\.safetensors|model\\.json|weights\\.bin)",
+  "category": "data-theft",
+  "enabled": true
+}

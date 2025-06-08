@@ -1,0 +1,12 @@
+{
+  "id": "1000044",
+  "name": "IoT Device Compromise",
+  "description": "Detects IoT malware indicators",
+  "message": "Compromised IoT device detected",
+  "severity": "high",
+  "destination_port": "23",
+  "protocol": "tcp",
+  "payload_pattern": "(?i)(busybox|mirai|gafgyt|bashlite)",
+  "category": "iot-security",
+  "enabled": true
+}

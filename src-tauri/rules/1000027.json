@@ -1,0 +1,12 @@
+{
+  "id": "1000027",
+  "name": "Suspicious PowerShell",
+  "description": "Detects suspicious PowerShell commands often used in attacks",
+  "message": "Suspicious PowerShell command detected",
+  "severity": "high",
+  "protocol": "http",
+  "direction": "any",
+  "payload_pattern": "(?i)(powershell.*-enc|-encodedcommand|iex\\s*\\(|invoke-expression|downloadstring)",
+  "category": "malware",
+  "enabled": true
+}

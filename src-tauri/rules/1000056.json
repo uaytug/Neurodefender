@@ -1,0 +1,12 @@
+{
+  "id": "1000056",
+  "name": "API Key Leakage",
+  "description": "Detects potential API key or token leakage",
+  "message": "API key exposure detected",
+  "severity": "critical",
+  "protocol": "http",
+  "direction": "outbound",
+  "payload_pattern": "(?i)(api[_-]?key|apikey|access[_-]?token|bearer\\s+[a-zA-Z0-9\\-\\._~\\+\\/]+=*|aws[_-]?access[_-]?key[_-]?id)",
+  "category": "data-leakage",
+  "enabled": true
+}

@@ -1,0 +1,12 @@
+{
+  "id": "1000037",
+  "name": "Credential Stuffing",
+  "description": "Detects high-volume login attempts indicating credential stuffing",
+  "message": "Credential stuffing attack detected",
+  "severity": "high",
+  "protocol": "http",
+  "direction": "inbound",
+  "payload_pattern": "(?i)(login|signin|auth).*password=",
+  "category": "bruteforce",
+  "enabled": true
+}

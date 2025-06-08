@@ -1,0 +1,12 @@
+{
+  "id": "1000022",
+  "name": "Reverse Shell",
+  "description": "Detects potential reverse shell connections",
+  "message": "Reverse shell connection detected",
+  "severity": "critical",
+  "destination_port": "1337",
+  "protocol": "tcp",
+  "direction": "outbound",
+  "category": "backdoor",
+  "enabled": true
+}

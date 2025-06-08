@@ -1,0 +1,12 @@
+{
+  "id": "1000028",
+  "name": "Buffer Overflow",
+  "description": "Detects potential buffer overflow patterns (NOP sleds, long strings)",
+  "message": "Buffer overflow attempt detected",
+  "severity": "critical",
+  "protocol": "tcp",
+  "direction": "inbound",
+  "payload_pattern": "(\\x90{10,}|\\x41{100,}|\\x00{50,})",
+  "category": "exploit",
+  "enabled": true
+}

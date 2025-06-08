@@ -1,0 +1,12 @@
+{
+  "id": "1000004",
+  "name": "HTTP Directory Traversal",
+  "description": "Detects attempts to access files using directory traversal techniques",
+  "message": "Potential directory traversal attack detected",
+  "severity": "high",
+  "protocol": "http",
+  "direction": "inbound",
+  "payload_pattern": "\\.\\.[\\\\/]",
+  "category": "web-attack",
+  "enabled": true
+}

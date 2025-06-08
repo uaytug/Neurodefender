@@ -1,0 +1,12 @@
+{
+  "id": "1000021",
+  "name": "Privilege Escalation",
+  "description": "Detects attempts to escalate privileges",
+  "message": "Privilege escalation attempt detected",
+  "severity": "critical",
+  "protocol": "http",
+  "direction": "inbound",
+  "payload_pattern": "(?i)(sudo|su\\s+root|passwd|shadow|sudoers|privilege|escalat)",
+  "category": "exploit",
+  "enabled": true
+}

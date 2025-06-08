@@ -1,0 +1,12 @@
+{
+  "id": "1000060",
+  "name": "Memory Scraping",
+  "description": "Detects potential memory scraping for payment card data",
+  "message": "Memory scraping attack detected",
+  "severity": "critical",
+  "protocol": "tcp",
+  "direction": "outbound",
+  "payload_pattern": "(?i)(credit.*card|cvv|track[12]|pan\\d{13,19})",
+  "category": "pos-malware",
+  "enabled": true
+}

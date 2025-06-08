@@ -1,0 +1,12 @@
+{
+  "id": "1000048",
+  "name": "Supply Chain Attack",
+  "description": "Detects suspicious package repository access to unusual domains",
+  "message": "Supply chain attack indicator detected",
+  "severity": "critical",
+  "protocol": "https",
+  "direction": "outbound",
+  "payload_pattern": "(?i)(npm|pypi|rubygems|maven|nuget).*\\.(tk|ml|ga|cf)",
+  "category": "supply-chain",
+  "enabled": true
+}

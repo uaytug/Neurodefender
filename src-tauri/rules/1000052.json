@@ -1,0 +1,12 @@
+{
+  "id": "1000052",
+  "name": "5G Network Slicing Attack",
+  "description": "Detects potential 5G network slicing security breaches",
+  "message": "5G network slicing attack detected",
+  "severity": "critical",
+  "protocol": "tcp",
+  "direction": "any",
+  "payload_pattern": "(?i)(slice|nssai|s-nssai|network\\s+slice)",
+  "category": "5g-security",
+  "enabled": true
+}

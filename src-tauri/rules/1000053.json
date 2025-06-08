@@ -1,0 +1,12 @@
+{
+  "id": "1000053",
+  "name": "Quantum Crypto Downgrade",
+  "description": "Detects attempts to downgrade to quantum-vulnerable cryptography",
+  "message": "Quantum-safe cryptography downgrade detected",
+  "severity": "critical",
+  "protocol": "https",
+  "direction": "any",
+  "payload_pattern": "(?i)(tls.*1\\.[0-2]|ssl[23]|weak.*cipher|export.*cipher)",
+  "category": "crypto-attack",
+  "enabled": true
+}

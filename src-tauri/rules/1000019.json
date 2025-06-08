@@ -1,0 +1,13 @@
+{
+  "id": "1000019",
+  "name": "DNS over HTTPS",
+  "description": "Detects DNS over HTTPS which may bypass DNS filtering",
+  "message": "DNS over HTTPS traffic detected",
+  "severity": "low",
+  "destination_port": "443",
+  "protocol": "https",
+  "direction": "outbound",
+  "payload_pattern": "application/dns-message",
+  "category": "policy-violation",
+  "enabled": true
+}

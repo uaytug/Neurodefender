@@ -1,0 +1,12 @@
+{
+  "id": "1000057",
+  "name": "Homograph Attack",
+  "description": "Detects potential internationalized domain name (IDN) homograph attacks",
+  "message": "IDN homograph attack detected",
+  "severity": "high",
+  "protocol": "dns",
+  "direction": "outbound",
+  "payload_pattern": "xn--",
+  "category": "phishing",
+  "enabled": true
+}
