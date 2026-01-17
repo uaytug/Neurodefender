@@ -29,7 +29,7 @@ actix-rt = "2.8"
 actix-cors = "0.6"
 jsonwebtoken = "8.3"
 bcrypt = "0.14"
-mongodb = "2.5"
+mongodb = "3.2"
 bson = { version = "2.14.0", features = ["chrono-0_4"] }
 log = "0.4"
 env_logger = "0.10"
