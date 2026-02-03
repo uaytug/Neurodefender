@@ -27,7 +27,7 @@ serde_json = "1"
 actix-web = { version = "4.3", features = ["macros", "compress-brotli", "compress-gzip", "openssl"] }
 actix-rt = "2.8"
 actix-cors = "0.6"
-jsonwebtoken = "8.3"
+jsonwebtoken = "10.3"
 bcrypt = "0.14"
 mongodb = "2.5"
 bson = { version = "2.14.0", features = ["chrono-0_4"] }
