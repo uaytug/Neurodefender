@@ -63,7 +63,7 @@ notify = "6.1"
 tokio-stream = { version = "0.1", features = ["sync"] }
 async-stream = "0.3"
 futures-util = "0.3"
-actix-web-lab = "0.18"
+actix-web-lab = "0.26"
 tauri-plugin-shell = "2"
 
 [features]
